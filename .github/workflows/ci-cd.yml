@@ -1,7 +1,7 @@
 name: CI/CD
 on:
   push:
-    branches: [main] # Make sure this matches your default branch (main or master)
+    branches: [master] # Make sure this matches your default branch (main or master)
 
 jobs:
   deploy:
