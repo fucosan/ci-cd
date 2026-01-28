@@ -1,12 +1,11 @@
 name: CI/CD
 on:
   push:
-    branches: [master]
+    branches: [main] # Make sure this matches your default branch (main or master)
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # CRITICAL: Grant permission to write to GitHub Packages
     permissions:
       contents: read
       packages: write
@@ -19,12 +18,12 @@ jobs:
         uses: dagger/dagger-for-github@v7
         with:
           verb: call
-          args: >
+          # Use | to preserve formatting exactly as written
+          args: |
             deploy 
             --source=. 
             --registry-addr=ghcr.io 
             --username=${{ github.actor }} 
             --password=env:GITHUB_TOKEN
         env:
-          # Use the automatic GitHub token provided by the runner
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
