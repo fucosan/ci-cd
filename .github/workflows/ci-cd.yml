@@ -18,12 +18,6 @@ jobs:
         uses: dagger/dagger-for-github@v7
         with:
           verb: call
-          # Use | to preserve formatting exactly as written
-          args: |
-            deploy 
-            --source=. 
-            --registry-addr=ghcr.io 
-            --username=${{ github.actor }} 
-            --password=env:GITHUB_TOKEN
+          args: deploy --source=. --registry-addr=ghcr.io --username=${{ github.actor }} --password=env:GITHUB_TOKEN
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
