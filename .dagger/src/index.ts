@@ -71,6 +71,10 @@ export class MyNestApp {
       .withWorkdir('/src')
       .withMountedCache('/pnpm/store', dag.cacheVolume('pnpm_store'))
       .withEnvVariable('PNPM_HOME', '/pnpm')
-      .withEnvVariable('PATH', '/pnpm:$PATH', { expand: true });
+      .withEnvVariable('PATH', '/pnpm:$PATH', { expand: true })
+      .withLabel(
+        'org.opencontainers.image.source',
+        'https://github.com/fucosan/ci-cd',
+      );
   }
 }
